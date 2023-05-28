@@ -20,8 +20,6 @@ import java.util.Optional;
 public class TrabajadorRest {
     @Autowired
     EmployeesRepo employeesRepo;
-    @Autowired
-    JobsRepo jobsRepo;
 
     @GetMapping("/verInfo")
     public ResponseEntity<HashMap<String, Object>> infoTrabajador(@RequestParam("id") int id){
@@ -36,9 +34,5 @@ public class TrabajadorRest {
             return ResponseEntity.badRequest().body(respuesta);
         }
     }
-    @GetMapping("/difPRES")
-    public List<Employees> difPresi(){
-        Jobs jobs = jobsRepo.findById("AD_PRES").get();
-        return employeesRepo.findAllByJobIdNot(jobs);
-    }
+
 }
