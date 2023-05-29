@@ -20,6 +20,8 @@ import java.util.Optional;
 public class TrabajadorRest {
     @Autowired
     EmployeesRepo employeesRepo;
+    @Autowired
+    JobsRepo jobsRepo;
 
     @GetMapping("/verInfo")
     public ResponseEntity<HashMap<String, Object>> infoTrabajador(@RequestParam("id") int id){
@@ -38,7 +40,8 @@ public class TrabajadorRest {
 
     @GetMapping("/verTodo")
     public ResponseEntity<HashMap<String, Object>> infoTodo(){
-        List<Employees> employees = employeesRepo.findAll();
+        Jobs presi = jobsRepo.findById("AD_PRES").get();
+        List<Employees> employees = employeesRepo.findAllByJobIdNot(presi);
         HashMap<String, Object> respuesta = new HashMap<>();
 
         respuesta.put("respuesta","encontrado");
