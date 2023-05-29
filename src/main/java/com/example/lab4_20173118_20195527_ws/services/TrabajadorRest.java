@@ -31,7 +31,8 @@ public class TrabajadorRest {
             return ResponseEntity.ok(respuesta);
         }else {
             respuesta.put("respuesta","no encontrado");
-            return ResponseEntity.badRequest().body(respuesta);
+            respuesta.put("empleado",new Employees());
+            return ResponseEntity.ok(respuesta);
         }
     }
 
