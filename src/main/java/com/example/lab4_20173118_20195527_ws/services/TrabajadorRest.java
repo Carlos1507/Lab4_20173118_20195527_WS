@@ -36,4 +36,16 @@ public class TrabajadorRest {
         }
     }
 
+    @GetMapping("/verTodo")
+    public ResponseEntity<HashMap<String, Object>> infoTodo(){
+        List<Employees> employees = employeesRepo.findAll();
+        HashMap<String, Object> respuesta = new HashMap<>();
+
+        respuesta.put("respuesta","encontrado");
+        respuesta.put("empleado",employees);
+        return ResponseEntity.ok(respuesta);
+
+    }
+
+
 }
